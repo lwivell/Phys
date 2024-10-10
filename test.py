@@ -1,5 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-x = np.sin(np.pi/6)
+x = np.linalg.norm(-2)
 print(x)
