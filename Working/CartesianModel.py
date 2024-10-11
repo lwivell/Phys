@@ -27,6 +27,11 @@ wave1 = wavenumber(angfreq, magperm, cond1, dieperm1)
 intrin1 = intrin_imp(angfreq, magperm, cond1, dieperm1)
 apparimp1 = appar_imp(wave1, intrin1, intrin1, thick1)
 
+
+
+resistivity = appar_resis(apparimp1, angfreq, magperm)
+
 print(wave1)
 print(apparimp1)
 print(intrin1)
+print(resistivity)
