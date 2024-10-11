@@ -68,8 +68,14 @@ def appar_imp(wavenumber, intrinimp, prevapparimp, thick):
     apparimp
         Apparent impedance, Z, of the layer being modelled
     """    
+    tanhval = ((1j)*wavenumber*thick)          
+    if np.linalg.norm(tanhval) >= 100:         #This for loop simply clips the tanh value as it can get too large for python to handle, causes overflow error
+        if np.real(tanhval) >= 5:
+            tanhval = 10 + 10j
+        else:
+            tanhval = -10 -10j
 
-    Z =np.complex128(intrinimp * (prevapparimp + (intrinimp*np.tanh((1j)*wavenumber*thick)))/(intrinimp + (prevapparimp*np.tanh((1j)*wavenumber*thick))))
+    Z =np.complex128(intrinimp * (prevapparimp + (intrinimp*np.tanh(tanhval)))/(intrinimp + (prevapparimp*np.tanh(tanhval))))
     return Z
 
 def appar_resis(apparimp, angfreq, magperm):

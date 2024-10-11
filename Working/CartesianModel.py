@@ -19,7 +19,7 @@ thick=1
 
 magperm = mu*meab
 
-thick1 = 4.5
+thick1 = 450000
 cond1 = 10**6
 dieperm1 = 10*miti
 
@@ -30,5 +30,3 @@ apparimp1 = appar_imp(wave1, intrin1, intrin1, thick1)
 print(wave1)
 print(apparimp1)
 print(intrin1)
-
-print(np.tanh(5j))
