@@ -26,7 +26,7 @@ def wavenumber(angfreq, magperm, elecon, dieperm):
 
 def intrin_imp(angfreq, magperm, elecon, dieperm):
     """
-    Calculates the wavenumber "k" 
+    Calculates the intrinsic impedance 
 
     Parameters
     -------------------------------------------------------
@@ -69,7 +69,7 @@ def appar_imp(wavenumber, intrinimp, prevapparimp, thick):
         Apparent impedance, Z, of the layer being modelled
     """    
 
-    Z = intrinimp * (prevapparimp + (intrinimp*np.tanh((1j)*wavenumber*thick)))/(intrinimp + (prevapparimp*np.tanh((1j)*wavenumber*thick)))
+    Z =np.complex128(intrinimp * (prevapparimp + (intrinimp*np.tanh((1j)*wavenumber*thick)))/(intrinimp + (prevapparimp*np.tanh((1j)*wavenumber*thick))))
     return Z
 
 def appar_resis(apparimp, angfreq, magperm):
