@@ -73,7 +73,7 @@ def appar_imp(wavenumber, intrinimp, prevapparimp, thick):
         if np.real(tanhval) >= 5:
             tanhval = 10 + 10j
         else:
-            tanhval = -10 -10j
+            tanhval = -10 -10j  
 
     Z =np.complex128(intrinimp * (prevapparimp + (intrinimp*np.tanh(tanhval)))/(intrinimp + (prevapparimp*np.tanh(tanhval))))
     return Z
