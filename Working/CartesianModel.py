@@ -16,7 +16,7 @@ resistivities=[]
 angfreqs=[]
 
 
-for jumps in tqdm(np.arange(1, 10**7, 1)):
+for jumps in tqdm(np.arange(1, 10**6, 1)):
 
     angfreq=jumps/(10**6)
     angfreqs.append(angfreq)
@@ -44,7 +44,7 @@ for jumps in tqdm(np.arange(1, 10**7, 1)):
 
     magperm3 = 1*meab                  #Third layer                  water
     thick3 = 100000
-    cond3 = 5
+    cond3 = 1
     dieperm3 = 85*miti
 
     wave3 = wavenumber(angfreq, magperm3, cond3, dieperm3)
@@ -53,7 +53,7 @@ for jumps in tqdm(np.arange(1, 10**7, 1)):
     apparimps.append(apparimp3)
 
     magperm4 = 1*meab                  #Fourth layer                     ice
-    thick4 = 10000
+    thick4 = 5000
     cond4 = 10**(-4)
     dieperm4 = 3.5*miti
 
@@ -62,25 +62,25 @@ for jumps in tqdm(np.arange(1, 10**7, 1)):
     apparimp4 = appar_imp(wave4, intrin4, apparimp3, thick4)
     apparimps.append(apparimp4)
 
-    #magperm5 = 1*meab                   #Fifth layer                      water
-  #  thick5 = 3000
-   # cond5 = 1
-   # dieperm5 = 85*miti
+    magperm5 = 1*meab                   #Fifth layer                      water
+    thick5 = 3000
+    cond5 = 1
+    dieperm5 = 85*miti
 
-   # wave5 = wavenumber(angfreq, magperm5, cond5, dieperm5)
-   # intrin5 = intrin_imp(angfreq, magperm5, cond5, dieperm5)
-   # apparimp5 = appar_imp(wave5, intrin5, apparimp4, thick5)
-   # apparimps.append(apparimp5)
+    wave5 = wavenumber(angfreq, magperm5, cond5, dieperm5)
+    intrin5 = intrin_imp(angfreq, magperm5, cond5, dieperm5)
+    apparimp5 = appar_imp(wave5, intrin5, apparimp4, thick5)
+    apparimps.append(apparimp5)
 
-   # magperm6 = 1*meab                  #Sixth layer                        ice
-   # thick6 = 5000
-   # cond6 = 10**(-4)
-   # dieperm6 = 3.5*miti
+    magperm6 = 1*meab                  #Sixth layer                        ice
+    thick6 = 5000
+    cond6 = 10**(-4)
+    dieperm6 = 3.5*miti
 
-    #wave6 = wavenumber(angfreq, magperm6, cond6, dieperm6)
-   # intrin6 = intrin_imp(angfreq, magperm6, cond6, dieperm6)
-   # apparimp6 = appar_imp(wave1, intrin6, apparimp5, thick6)
-   # apparimps.append(apparimp6)
+    wave6 = wavenumber(angfreq, magperm6, cond6, dieperm6)
+    intrin6 = intrin_imp(angfreq, magperm6, cond6, dieperm6)
+    apparimp6 = appar_imp(wave6, intrin6, apparimp5, thick6)
+    apparimps.append(apparimp6)
 
     resistivity = appar_resis(apparimps[-1], angfreq, magperm4)
     resistivities.append(resistivity)
@@ -109,6 +109,6 @@ plt.ylabel('Apparent Resistivity')
 plt.show()
 
 
-np.save("resisDataocean5.npy", data)
+np.save("resisDatawithlayer.npy", data)
 
 
