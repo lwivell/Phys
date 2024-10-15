@@ -5,110 +5,144 @@ from Extractables.ElectromagProps import wavenumber
 from Extractables.ElectromagProps import intrin_imp
 from Extractables.ElectromagProps import appar_imp
 from Extractables.ElectromagProps import appar_resis
-from tqdm import tqdm
+from tqdm import tqdm 
 
 miti = const.eps0.value
 meab = const.mu0.value
 
 apparimps = []
 data = []
-resistivities=[]
-angfreqs=[]
+params = [0.75,1.25,2,3,5]
+list1 = []
+list2= []
+list3=[]
+list4 =[]
+list5=[]
+ 
+for n in params:
+    resistivities=[]
+    angfreqs=[]
+    for jumps in tqdm(np.arange(1, 2000000, 2)):
+
+        
+        angfreq=jumps/(10**5)
+        angfreqs.append(angfreq)
+
+        magperm1 = 5000*meab                  #Innermost layer     iron core
+        thick1 = 450000
+        cond1 = 10**6
+        dieperm1 = 10000*miti
+
+        wave1 = wavenumber(angfreq, magperm1, cond1, dieperm1)
+        intrin1 = intrin_imp(angfreq, magperm1, cond1, dieperm1)
+        apparimp1 = appar_imp(wave1, intrin1, intrin1, thick1)
+        apparimps.append(apparimp1)
+
+        magperm2 = 1*meab                 #Second innermost layer    silicate rock
+        thick2 = 1000000
+        cond2 = 10**(-3)
+        dieperm2 = 5*miti
+
+        wave2 = wavenumber(angfreq, magperm2, cond2, dieperm2)
+        intrin2 = intrin_imp(angfreq, magperm2, cond2, dieperm2)
+        apparimp2 = appar_imp(wave2, intrin2, apparimp1, thick2)
+        apparimps.append(apparimp2)
 
 
-for jumps in tqdm(np.arange(1, 10**6, 1)):
+        magperm3 = 1*meab                  #Third layer                  water
+        thick3 = 100000
+        cond3 = 1
+        dieperm3 = 85*miti
 
-    angfreq=jumps/(10**6)
-    angfreqs.append(angfreq)
+        wave3 = wavenumber(angfreq, magperm3, cond3, dieperm3)
+        intrin3 = intrin_imp(angfreq, magperm3, cond3, dieperm3)
+        apparimp3 = appar_imp(wave3, intrin3, apparimp2, thick3)
+        apparimps.append(apparimp3)
 
-    magperm1 = 5000*meab                  #Innermost layer     iron core
-    thick1 = 450000
-    cond1 = 10**6
-    dieperm1 = 10000*miti
+        magperm4 = 1*meab                  #Fourth layer                     ice
+        thick4 = 5000
+        cond4 = 10**(-4)
+        dieperm4 = 3.5*miti
 
-    wave1 = wavenumber(angfreq, magperm1, cond1, dieperm1)
-    intrin1 = intrin_imp(angfreq, magperm1, cond1, dieperm1)
-    apparimp1 = appar_imp(wave1, intrin1, intrin1, thick1)
-    apparimps.append(apparimp1)
+        wave4 = wavenumber(angfreq, magperm4, cond4, dieperm4)
+        intrin4 = intrin_imp(angfreq, magperm4, cond4, dieperm4)
+        apparimp4 = appar_imp(wave4, intrin4, apparimp3, thick4)
+        apparimps.append(apparimp4)
 
-    magperm2 = 1*meab                 #Second innermost layer    silicate rock
-    thick2 = 1000000
-    cond2 = 10**(-3)
-    dieperm2 = 5*miti
+        magperm5 = 1*meab                   #Fifth layer                      water
+        thick5 = 2000
+        cond5 = 1
+        dieperm5 = 85*miti
 
-    wave2 = wavenumber(angfreq, magperm2, cond2, dieperm2)
-    intrin2 = intrin_imp(angfreq, magperm2, cond2, dieperm2)
-    apparimp2 = appar_imp(wave2, intrin2, apparimp1, thick2)
-    apparimps.append(apparimp2)
+        wave5 = wavenumber(angfreq, magperm5, cond5, dieperm5)
+        intrin5 = intrin_imp(angfreq, magperm5, cond5, dieperm5)
+        apparimp5 = appar_imp(wave5, intrin5, apparimp4, thick5)
+        apparimps.append(apparimp5)
 
+        magperm6 = 1*meab                  #Sixth layer                        ice
+        thick6 = n*1000
+        cond6 = 10**(-4)
+        dieperm6 = 3.5*miti
 
-    magperm3 = 1*meab                  #Third layer                  water
-    thick3 = 100000
-    cond3 = 1
-    dieperm3 = 85*miti
+        wave6 = wavenumber(angfreq, magperm6, cond6, dieperm6)
+        intrin6 = intrin_imp(angfreq, magperm6, cond6, dieperm6)
+        apparimp6 = appar_imp(wave6, intrin6, apparimp5, thick6)
+        apparimps.append(apparimp6)
 
-    wave3 = wavenumber(angfreq, magperm3, cond3, dieperm3)
-    intrin3 = intrin_imp(angfreq, magperm3, cond3, dieperm3)
-    apparimp3 = appar_imp(wave3, intrin3, apparimp2, thick3)
-    apparimps.append(apparimp3)
+        resistivity = appar_resis(apparimps[-1], angfreq, magperm4)
+        resistivities.append(resistivity)
+        data.append([angfreq, resistivity])
+    
+    if n == params[0]:
+        list1.append(resistivities)
+    if n == params[1]:
+        list2.append(resistivities)
+    if n == params[2]:
+        list3.append(resistivities)
+    if n == params[3]:
+        list4.append(resistivities)
+    if n== params[4]:
+        list5.append(resistivities)
 
-    magperm4 = 1*meab                  #Fourth layer                     ice
-    thick4 = 5000
-    cond4 = 10**(-4)
-    dieperm4 = 3.5*miti
+    
 
-    wave4 = wavenumber(angfreq, magperm4, cond4, dieperm4)
-    intrin4 = intrin_imp(angfreq, magperm4, cond4, dieperm4)
-    apparimp4 = appar_imp(wave4, intrin4, apparimp3, thick4)
-    apparimps.append(apparimp4)
+condu1 = []
+condu2 = []
+condu3 = []
+condu4 = []
+condu5 = []
 
-    magperm5 = 1*meab                   #Fifth layer                      water
-    thick5 = 3000
-    cond5 = 1
-    dieperm5 = 85*miti
+for entry in list1[0]:
+    condu1.append(1/entry)
+for entry in list2[0]:
+    condu2.append(1/entry)
+for entry in list3[0]:
+    condu3.append(1/entry)
+for entry in list4[0]:
+    condu4.append(1/entry)
+for entry in list5[0]:
+    condu5.append(1/entry)
 
-    wave5 = wavenumber(angfreq, magperm5, cond5, dieperm5)
-    intrin5 = intrin_imp(angfreq, magperm5, cond5, dieperm5)
-    apparimp5 = appar_imp(wave5, intrin5, apparimp4, thick5)
-    apparimps.append(apparimp5)
+freqs =[]
 
-    magperm6 = 1*meab                  #Sixth layer                        ice
-    thick6 = 5000
-    cond6 = 10**(-4)
-    dieperm6 = 3.5*miti
+for entry in angfreqs:
+    freqs.append(entry/(2*np.pi))
 
-    wave6 = wavenumber(angfreq, magperm6, cond6, dieperm6)
-    intrin6 = intrin_imp(angfreq, magperm6, cond6, dieperm6)
-    apparimp6 = appar_imp(wave6, intrin6, apparimp5, thick6)
-    apparimps.append(apparimp6)
-
-    resistivity = appar_resis(apparimps[-1], angfreq, magperm4)
-    resistivities.append(resistivity)
-    data.append([angfreq, resistivity])
-
-conductivities=[]
-for entry in resistivities:
-    conductivities.append(1/entry)
-
-print(conductivities)
-print(angfreqs)
-plt.subplot(2,1,1)
-plt.scatter(angfreqs, conductivities)
+plt.plot(freqs, condu1, label=params[0])
+plt.plot(freqs, condu2, label=params[1])
+plt.plot(freqs, condu3, label=params[2])
+plt.plot(freqs, condu4, label=params[3])
+plt.plot(freqs, condu5, label=params[4])
 plt.xscale('log')
 plt.yscale('log')
-plt.xlabel('Angular frequencies [rads]')
-plt.ylabel('Apparent Conductivity')
-
-plt.subplot(2,1,2)
-plt.scatter(angfreqs, resistivities)
-plt.xscale('log')
-plt.yscale('log')
-plt.xlabel('Angular frequencies [rads]')
-plt.ylabel('Apparent Resistivity')
+plt.xlabel('Frequency [Hz]')
+plt.ylabel('Apparent Conductivity [S/m]')
+plt.title("Layer Depth [km]")
+plt.legend()
 
 plt.show()
 
 
-np.save("resisDatawithlayer.npy", data)
+np.save("layerdepth.npy", data)
 
 
