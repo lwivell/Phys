@@ -1,5 +1,7 @@
 # Phys
 Main working experimental physics repo
 
-Folders containing different experimental works and extractable tools are contained
-Most of the physics relates to space physics, with a nod to particle physics experiments too
+All current work is withing the 'Working' folder, whih includes scripts that are actively called from and/or scripts under development.
+
+The 'Extractables' folder within this ontians scripts with callable functions which perform well-known calculations.
+
