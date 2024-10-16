@@ -11,8 +11,7 @@ miti = const.eps0.value
 meab = const.mu0.value
 
 apparimps = []
-data = []
-params = [0.75,1.25,2,3,5]
+params = [40,60,100,160,250]
 list1 = []
 list2= []
 list3=[]
@@ -27,7 +26,7 @@ for n in params:
     stepsize = 1
     while start < end:
     
-        angfreq=start/(10**8)
+        angfreq=start/(10**7)
         angfreqs.append(angfreq)
 
         magperm1 = 5000*meab                  #Innermost layer     iron core
@@ -52,7 +51,7 @@ for n in params:
 
 
         magperm3 = 1*meab                  #Third layer                  water
-        thick3 = 100000
+        thick3 = n*1000
         cond3 = 1
         dieperm3 = 85*miti
 
@@ -82,7 +81,7 @@ for n in params:
         apparimps.append(apparimp5)
 
         magperm6 = 1*meab                  #Sixth layer                        ice
-        thick6 = n*1000
+        thick6 = 5000
         cond6 = 10**(-4)
         dieperm6 = 3.5*miti
 
@@ -93,9 +92,10 @@ for n in params:
 
         resistivity = appar_resis(apparimps[-1], angfreq, magperm4)
         resistivities.append(resistivity)
-        data.append([angfreq, resistivity])
+
+
         start += stepsize
-        stepsize *= 1.1
+        stepsize *= 1.05
     
     if n == params[0]:
         list1.append(resistivities)
@@ -116,26 +116,33 @@ condu3 = []
 condu4 = []
 condu5 = []
 
-for entry in list1[0]:
-    condu1.append(1/entry)
-
-if len(params)>1:
-    for entry in list2[0]:
-        condu2.append(1/entry)
-if len(params)>2:
-    for entry in list3[0]:
-        condu3.append(1/entry)
-if len(params)>3:
-    for entry in list4[0]:
-        condu4.append(1/entry)
-if len(params)>4:
-    for entry in list5[0]:
-        condu5.append(1/entry)
-
 freqs =[]
 
 for entry in angfreqs:
     freqs.append(entry/(2*np.pi))
+
+
+for entry in list1[0]:
+    condu1.append(1/entry)
+data = [freqs,condu1]
+
+if len(params)>1:
+    for entry in list2[0]:
+        condu2.append(1/entry)
+    data = [freqs,condu1,condu2]
+if len(params)>2:
+    for entry in list3[0]:
+        condu3.append(1/entry)
+    data = [freqs, condu1,condu2,condu3]
+if len(params)>3:
+    for entry in list4[0]:
+        condu4.append(1/entry)
+    data = [freqs,condu1,condu2,condu3,condu4]
+if len(params)>4:
+    for entry in list5[0]:
+        condu5.append(1/entry)
+    data = [freqs,condu1,condu2,condu3,condu4,condu5]
+
 
 plt.plot(freqs, condu1, label=params[0])
 if len(params)>1:
@@ -150,12 +157,18 @@ plt.xscale('log')
 plt.yscale('log')
 plt.xlabel('Frequency [Hz]')
 plt.ylabel('Apparent Conductivity [S/m]')
-plt.title("Layer Depth [km]")
+plt.title("Layer Thickness [km]")
+plt.xlim(10**(-6), 10)
+plt.ylim(10**(-4), 10)
+plt.axvspan(10**(-2.5), 100, color='lightgrey')
+plt.axvline(x=4.3*10**(-7), color='black', linestyle='--')
+plt.axvline(x=3.3*10**(-6), color='black', linestyle='--')
+plt.axvline(x=2.5*10**(-5), color='black', linestyle='--')
+plt.axvline(x=4.9*10**(-5), color='black', linestyle='--')
+plt.axvline(x=7.4*10**(-5), color='black', linestyle='--')
 plt.legend()
 
 plt.show()
 
 
-np.save(r".\Europa Induction Data\layerdepth.npy", data)
-
-
+np.save(r".\Europa Induction Data\oceanthickness.npy", data)
