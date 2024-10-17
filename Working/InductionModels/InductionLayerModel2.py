@@ -11,7 +11,7 @@ miti = const.eps0.value
 meab = const.mu0.value
 
 apparimps = []
-params = [40,60,100,160,250]
+params = [0.001,10,45,100,250]
 list1 = []
 list2= []
 list3=[]
@@ -30,7 +30,7 @@ for n in params:
         angfreqs.append(angfreq)
 
         magperm1 = 5000*meab                  #Innermost layer     iron core
-        thick1 = 450000
+        thick1 = n*1000
         cond1 = 10**6
         dieperm1 = 10000*miti
 
@@ -51,9 +51,9 @@ for n in params:
 
 
         magperm3 = 1*meab                  #Third layer                  water
-        thick3 = n*1000
+        thick3 = 100000
         cond3 = 1
-        dieperm3 = 85*miti
+        dieperm3 =85*miti
 
         wave3 = wavenumber(angfreq, magperm3, cond3, dieperm3)
         intrin3 = intrin_imp(angfreq, magperm3, cond3, dieperm3)
@@ -61,7 +61,7 @@ for n in params:
         apparimps.append(apparimp3)
 
         magperm4 = 1*meab                  #Fourth layer                     ice
-        thick4 = 5000
+        thick4 = 10000
         cond4 = 10**(-4)
         dieperm4 = 3.5*miti
 
@@ -69,6 +69,8 @@ for n in params:
         intrin4 = intrin_imp(angfreq, magperm4, cond4, dieperm4)
         apparimp4 = appar_imp(wave4, intrin4, apparimp3, thick4)
         apparimps.append(apparimp4)
+
+        """
 
         magperm5 = 1*meab                   #Fifth layer                      water
         thick5 = 2000
@@ -89,6 +91,7 @@ for n in params:
         intrin6 = intrin_imp(angfreq, magperm6, cond6, dieperm6)
         apparimp6 = appar_imp(wave6, intrin6, apparimp5, thick6)
         apparimps.append(apparimp6)
+        """
 
         resistivity = appar_resis(apparimps[-1], angfreq, magperm4)
         resistivities.append(resistivity)
@@ -157,7 +160,7 @@ plt.xscale('log')
 plt.yscale('log')
 plt.xlabel('Frequency [Hz]')
 plt.ylabel('Apparent Conductivity [S/m]')
-plt.title("Layer Thickness [km]")
+plt.title("Core Thickness [km]")
 plt.xlim(10**(-6), 10)
 plt.ylim(10**(-4), 10)
 plt.axvspan(10**(-2.5), 100, color='lightgrey')
@@ -171,4 +174,4 @@ plt.legend()
 plt.show()
 
 
-np.save(r".\Europa Induction Data\oceanthickness.npy", data)
+np.save(r".\Europa Induction Data\CoreThickness.npy", data)
