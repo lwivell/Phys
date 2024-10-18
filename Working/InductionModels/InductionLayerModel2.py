@@ -11,7 +11,7 @@ miti = const.eps0.value
 meab = const.mu0.value
 
 apparimps = []
-params = [0.001,10,45,100,250]
+params = [10,100,200,450,800]
 list1 = []
 list2= []
 list3=[]
@@ -30,7 +30,7 @@ for n in params:
         angfreqs.append(angfreq)
 
         magperm1 = 5000*meab                  #Innermost layer     iron core
-        thick1 = n*1000
+        thick1 = 450000
         cond1 = 10**6
         dieperm1 = 10000*miti
 
