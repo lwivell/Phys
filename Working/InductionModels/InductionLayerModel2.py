@@ -174,4 +174,4 @@ plt.legend()
 plt.show()
 
 
-np.save(r".\Europa Induction Data\CoreThickness.npy", data)
+np.save(r".\Europa Models\CoreThickness.npy", data)
