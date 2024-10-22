@@ -11,7 +11,7 @@ miti = const.eps0.value
 meab = const.mu0.value
 
 apparimps = []
-params = [10,100,200,450,800]
+params = [10]
 list1 = []
 list2= []
 list3=[]
@@ -40,7 +40,7 @@ for n in params:
         apparimps.append(apparimp1)
 
         magperm2 = 1*meab                 #Second innermost layer    silicate rock
-        thick2 = 1000000
+        thick2 = 1000*1000
         cond2 = 10**(-3)
         dieperm2 = 5*miti
 
@@ -51,7 +51,7 @@ for n in params:
 
 
         magperm3 = 1*meab                  #Third layer                  water
-        thick3 = 100000
+        thick3 = 100*1000
         cond3 = 1
         dieperm3 =85*miti
 
@@ -61,7 +61,7 @@ for n in params:
         apparimps.append(apparimp3)
 
         magperm4 = 1*meab                  #Fourth layer                     ice
-        thick4 = 10000
+        thick4 = n*1000
         cond4 = 10**(-4)
         dieperm4 = 3.5*miti
 
@@ -174,4 +174,4 @@ plt.legend()
 plt.show()
 
 
-np.save(r".\Europa Models\CoreThickness.npy", data)
+np.save(r".\Europa Models\BaseCurve.npy", data)
