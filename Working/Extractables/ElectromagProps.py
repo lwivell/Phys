@@ -70,11 +70,15 @@ def appar_imp(wavenumber, intrinimp, prevapparimp, thick):
         Apparent impedance, Z, of the layer being modelled
     """    
     tanhval = ((1j)*wavenumber*thick)          
-    if np.linalg.norm(tanhval) >= 10000:         #This for loop simply clips the tanh value as it can get too large for python to handle, causes overflow error
-        if np.real(tanhval) >= 50:
-            tanhval = 100 + 100j
-        else:
-            tanhval = -100 -100j  
+    if np.linalg.norm(tanhval) >= 100:                                   #This for loop simply clips the tanh value as it can get too large for python to handle, causes overflow error
+        if np.real(tanhval) >= 0 and np.imag(tanhval)>=0:
+            tanhval = 10 + 10j
+        if np.real(tanhval) >= 0 and np.imag(tanhval)<=0:
+            tanhval = 10 -10j
+        if np.real(tanhval) <=0 and np.imag(tanhval)>=0:
+            tanhval = -10+10j
+        if np.real(tanhval) <=0 and np.imag(tanhval)<=0:
+            tanhval = -10-10j  
 
     Z =np.complex128(intrinimp * (prevapparimp + (intrinimp*np.tanh(tanhval)))/(intrinimp + (prevapparimp*np.tanh(tanhval))))
     return Z

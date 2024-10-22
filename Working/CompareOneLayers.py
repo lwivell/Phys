@@ -16,12 +16,6 @@ intrin = []
 squintrin = []
 resistivity =[]
 
-list1 = []
-list2= []
-list3=[]
-list4 =[]
-list5=[]
-
 start = 1
 end = 2000000000000000000000000000000000
 stepsize = 1
@@ -51,9 +45,67 @@ icecondu=[]
 for entry in resistivity:
     icecondu.append(1/entry)
 
+angfreqs = []
+intrin = []
+squintrin = []
+resistivity =[]
+
+start = 1
+end = 2000000000000000000000000000000000
+stepsize = 1
+
+thickness = 100*1000
+conductivity = 1
+dieperm = 85*miti
+
+while start< end:
+        
+        angfreq=start/(10**13)
+        angfreqs.append(angfreq)
+
+        intrinsic = intrin_imp(angfreq, meab, conductivity, dieperm)
+        intrin.append(np.linalg.norm(intrinsic))
+        squareintrin = np.linalg.norm(intrinsic)**2
+        squintrin.append(squareintrin)
+        resis = appar_resis(intrinsic, angfreq, meab)
+        resistivity.append(resis)
+        start += stepsize
+        stepsize *= 1.05
+
+watercondu =[]
+for entry in resistivity:
+      watercondu.append(1/entry)
+
+angfreqs = []
+intrin = []
+squintrin = []
+resistivity =[]
+
+start = 1
+end = 2000000000000000000000000000000000
+stepsize = 1
+
+thickness = 1000*1000
 conductivity = 10**(-3)
 dieperm = 5*miti
 
+while start< end:
+        
+        angfreq=start/(10**13)
+        angfreqs.append(angfreq)
+
+        intrinsic = intrin_imp(angfreq, meab, conductivity, dieperm)
+        intrin.append(np.linalg.norm(intrinsic))
+        squareintrin = np.linalg.norm(intrinsic)**2
+        squintrin.append(squareintrin)
+        resis = appar_resis(intrinsic, angfreq, meab)
+        resistivity.append(resis)
+        start += stepsize
+        stepsize *= 1.05
+
+silicondu =[]
+for entry in resistivity:
+      silicondu.append(1/entry)
 
 start = 1
 end = 2000000000000000000000000000000000
@@ -67,7 +119,7 @@ while start< end:
         angfreq=start/(10**13)
         angfreqs.append(angfreq)
 
-        magperm1 = 5000*meab                  #Water
+        magperm1 = meab                  #Water
         thick1 = 100*1000
         cond1 = 1
         dieperm1 = 85*miti
@@ -93,12 +145,53 @@ while start< end:
         resistivities.append(resistivity)
 
 
-twocondu=[]
+twocondu1=[]
 for entry in resistivities:
-    twocondu.append(1/entry)
+    twocondu1.append(1/entry)
 
-conductivity = 1
-dieperm = 85*miti
+start = 1
+end = 2000000000000000000000000000000000
+stepsize = 1
+
+apparimps=[]
+resistivities=[]
+
+while start< end:
+        
+        angfreq=start/(10**13)
+        angfreqs.append(angfreq)
+
+        magperm1 = meab                  #silicate 
+        thick1 = 1000*1000
+        cond1 = 10**(-3)
+        dieperm1 = 5*miti
+
+        wave1 = wavenumber(angfreq, magperm1, cond1, dieperm1)
+        intrin1 = intrin_imp(angfreq, magperm1, cond1, dieperm1)
+        apparimp1 = appar_imp(wave1, intrin1, intrin1, thick1)
+        apparimps.append(apparimp1)
+
+        magperm2 = 1*meab                 #water
+        thick2 = 100*1000
+        cond2 = 1
+        dieperm2 = 85*miti
+
+        wave2 = wavenumber(angfreq, magperm2, cond2, dieperm2)
+        intrin2 = intrin_imp(angfreq, magperm2, cond2, dieperm2)
+        apparimp2 = appar_imp(wave2, intrin2, apparimp1, thick2)
+        apparimps.append(apparimp2)
+
+        start += stepsize
+        stepsize *= 1.05
+        resistivity = appar_resis(apparimps[-1], angfreq, meab)
+        resistivities.append(resistivity)
+
+
+twocondu2=[]
+for entry in resistivities:
+    twocondu2.append(1/entry)
+
+
 
 resistivithree =[]
 
@@ -155,9 +248,13 @@ threecondu=[]
 for entry in resistivithree:
     threecondu.append(1/entry)
 
-plt.title("Addition of layers to model")
-plt.plot(freqs, twocondu, label='Ice + Water Layers')
-plt.plot(freqs, icecondu, label='Ice Layer')
+
+plt.title("Components of an Induction Curve")
+plt.plot(freqs, silicondu, label ='Silicate Layer', linestyle='--')
+plt.plot(freqs, watercondu, label='Water Layer', linestyle='--')
+plt.plot(freqs, icecondu, label='Ice Layer', linestyle='--')
+plt.plot(freqs, twocondu1, label='Ice + Water Layers', linestyle='-.')
+plt.plot(freqs, twocondu2, label='Silicate + Water', linestyle='-.')
 plt.plot(freqs, threecondu, label='Complete Model')
 plt.yscale('log')
 plt.xscale('log')
