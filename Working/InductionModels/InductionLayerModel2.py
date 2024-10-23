@@ -11,7 +11,7 @@ miti = const.eps0.value
 meab = const.mu0.value
 
 apparimps = []
-params = [1]
+params = [190]
 list1 = []
 list2= []
 list3=[]
@@ -29,19 +29,19 @@ for n in params:
         angfreq=start/(10**7)
         angfreqs.append(angfreq)
 
-        magperm1 = meab                  #Innermost layer    silicate
-        thick1 = 199*1000
-        cond1 = 10**(-3)
-        dieperm1 = 5*miti
+        magperm1 = meab                  #Innermost layer  ice
+        thick1 = 35*1000
+        cond1 = 10**(-4)
+        dieperm1 = 3.5*miti
 
         wave1 = wavenumber(angfreq, magperm1, cond1, dieperm1)
         intrin1 = intrin_imp(angfreq, magperm1, cond1, dieperm1)
         apparimp1 = appar_imp(wave1, intrin1, intrin1, thick1)
         apparimps.append(apparimp1)
 
-        magperm2 = 1*meab                 #Second innermost layer  water
-        thick2 = 12*1000
-        cond2 = n
+        magperm2 = 1*meab                 #Second innermost layer water
+        thick2 = 27*1000
+        cond2 = 1
         dieperm2 = 85*miti
 
         wave2 = wavenumber(angfreq, magperm2, cond2, dieperm2)
@@ -50,38 +50,36 @@ for n in params:
         apparimps.append(apparimp2)
 
 
-        magperm3 = 1*meab                  #Third layer         ice
-        thick3 = 41*1000
-        cond3 = 10**(-4)
-        dieperm3 =3.5*miti
+        magperm3 = 1*meab                  #Third layer     silicate
+        thick3 = n*1000
+        cond3 = 10**(-3)
+        dieperm3 =5*miti
 
         wave3 = wavenumber(angfreq, magperm3, cond3, dieperm3)
         intrin3 = intrin_imp(angfreq, magperm3, cond3, dieperm3)
         apparimp3 = appar_imp(wave3, intrin3, apparimp2, thick3)
         apparimps.append(apparimp3)
-        """
-        magperm4 = 1*meab                  #Fourth layer                     ice
-        thick4 = n*1000
-        cond4 = 10**(-4)
-        dieperm4 = 3.5*miti
+
+        magperm4 = 1*meab                  #Fourth layer                   water
+        thick4 = 27*1000
+        cond4 = 1
+        dieperm4 = 85*miti
 
         wave4 = wavenumber(angfreq, magperm4, cond4, dieperm4)
         intrin4 = intrin_imp(angfreq, magperm4, cond4, dieperm4)
         apparimp4 = appar_imp(wave4, intrin4, apparimp3, thick4)
         apparimps.append(apparimp4)
 
-
-
-        magperm5 = 1*meab                   #Fifth layer                      water
-        thick5 = 2000
-        cond5 = 1
-        dieperm5 = 85*miti
+        magperm5 = 1*meab                   #Fifth layer                    ice
+        thick5 = 35*1000
+        cond5 = 10**(-4)
+        dieperm5 = 3.5*miti
 
         wave5 = wavenumber(angfreq, magperm5, cond5, dieperm5)
         intrin5 = intrin_imp(angfreq, magperm5, cond5, dieperm5)
         apparimp5 = appar_imp(wave5, intrin5, apparimp4, thick5)
         apparimps.append(apparimp5)
-
+        """
         magperm6 = 1*meab                  #Sixth layer                        ice
         thick6 = 5000
         cond6 = 10**(-4)
@@ -160,8 +158,8 @@ plt.xscale('log')
 plt.yscale('log')
 plt.xlabel('Frequency [Hz]')
 plt.ylabel('Apparent Conductivity [S/m]')
-plt.title('Ocean Thickness [km]')
-plt.xlim(10**(-6), 10)
+plt.title('Mantle Thickness [km]')
+#plt.xlim(10**(-6), 10)
 plt.ylim(10**(-4), 10)
 plt.axvspan(10**(-2.5), 100, color='lightgrey')
 plt.legend()
@@ -169,4 +167,4 @@ plt.legend()
 plt.show()
 
 
-np.save(r".\Enceladus Models\HemLeast.npy", data)
+np.save(r".\Enceladus Models\whole.npy", data)
