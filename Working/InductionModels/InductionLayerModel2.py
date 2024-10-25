@@ -11,7 +11,7 @@ miti = const.eps0.value
 meab = const.mu0.value
 
 apparimps = []
-params = [1]
+params = [15,25,35,45,60]
 list1 = []
 list2= []
 list3=[]
@@ -30,7 +30,7 @@ for n in params:
         angfreqs.append(angfreq)
 
         magperm1 = meab                  #Innermost layer  silicate
-        thick1 = 199*1000
+        thick1 = 190*1000
         cond1 = 10**(-3)
         dieperm1 = 5*miti
 
@@ -40,8 +40,8 @@ for n in params:
         apparimps.append(apparimp1)
 
         magperm2 = 1*meab                 #Second innermost layer water
-        thick2 = 12*1000
-        cond2 = n
+        thick2 = n*1000
+        cond2 = 1
         dieperm2 = 85*miti
 
         wave2 = wavenumber(angfreq, magperm2, cond2, dieperm2)
@@ -51,7 +51,7 @@ for n in params:
 
 
         magperm3 = 1*meab                  #Third layer   ice
-        thick3 = 41*1000
+        thick3 = 26*1000
         cond3 = 10**(-4)
         dieperm3 =3.5*miti
 
@@ -158,13 +158,13 @@ plt.xscale('log')
 plt.yscale('log')
 plt.xlabel('Frequency [Hz]')
 plt.ylabel('Apparent Conductivity [S/m]')
-plt.title('Mantle Thickness [km]')
-#plt.xlim(10**(-6), 10)
+plt.title('Ocean Thickness [km]')
+plt.xlim(10**(-6), 10)
 plt.ylim(10**(-4), 10)
-plt.axvspan(10**(-2.5), 100, color='lightgrey')
+#plt.axvspan(10**(-2.5), 100, color='lightgrey')
 plt.legend()
 
 plt.show()
 
 
-np.save(r".\Enceladus Models\PLACEHOLDWER.npy", data)
+np.save(r".\Enceladus Models\HOLDER.npy", data)

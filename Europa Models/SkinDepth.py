@@ -75,8 +75,14 @@ plt.axhline(y=1, color='black', linestyle='--')
 plt.legend()
 plt.show()
 
-plt.plot(kmdepths, cond)
+plt.plot(freqs, kmdepths)
 plt.yscale('log')
-plt.xlabel('Skin Depth [km]')
-plt.ylabel('Apparent Conductivity [S/m]')
+plt.xscale('log')
+plt.xlabel('Frequncy [Hz]')
+plt.ylabel('Skin Depth [km]')
+plt.grid(True, which="both", ls="--")
 plt.show()
+
+datas =[freqs, kmdepths]
+
+np.save(r".\Europa Models\ApparentSkinDepth.npy", datas)
