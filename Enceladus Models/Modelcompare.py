@@ -24,7 +24,7 @@ plt.xscale('log')
 plt.yscale('log')
 plt.xlabel('Frequency [Hz]')
 plt.ylabel('Apparent Conductivity [S/m]')
-plt.xlim(10**(-3), 1000)
+plt.xlim(10**(-7), 1000)
 plt.ylim(10**(-4.5), 1)
 
 plt.legend()
