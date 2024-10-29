@@ -11,7 +11,7 @@ miti = const.eps0.value
 meab = const.mu0.value
 
 """
-Aim of this model, take arrays of depths for ocean and crusts, run those combinations, and plot the outcome as a time series. 
+Aim of this model, take arrays of depths for ocean and crusts, run those combinations, and plot the outcome as a time series, simulating a low flyby. 
 So basically, initially, plot multiple on same plot, but get the maths working for taking the arrays of depths,
 then worry about the plots over time. 
 
