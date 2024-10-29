@@ -1,0 +1,20 @@
+{
+    "maxlayers": 3,
+    "layers": [{
+        "index": 0,
+        "thickness": 190,
+        "conductivity": 0.001,
+        "permittivity": 5
+    },{
+        "index": 1,
+        "thickness": 35,
+        "conductivity": 1,
+        "permittivity": 85
+    },{
+        "index": 2,
+        "thickness": 26,
+        "conductivity": 0.0001,
+        "permittivity": 3.5
+    }],
+    "name": "Enceladus Average Model"
+}

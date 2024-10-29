@@ -59,6 +59,7 @@ for n in params:
         intrin3 = intrin_imp(angfreq, magperm3, cond3, dieperm3)
         apparimp3 = appar_imp(wave3, intrin3, apparimp2, thick3)
         apparimps.append(apparimp3)
+        print(apparimp3)
         """
         magperm4 = 1*meab                  #Fourth layer                   water
         thick4 = 27*1000
