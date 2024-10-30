@@ -167,7 +167,7 @@ class LayeredSystem(object):
         Returns
         --------------------------------------------------------------------
         apparcond
-            Apparent conductivity of the body (rho)
+            Apparent conductivity of the body (sigma)
         """
         apparcond = np.zeros(apparimp.shape)
         for n in range(len(apparimp)):
