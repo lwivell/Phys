@@ -128,9 +128,11 @@ class LayeredSystem(object):
                     tanhval[n] = -10+10j
                 if np.real(tanhval[n]) <=0 and np.imag(tanhval[n])<=0:
                     tanhval[n] = -10-10j  
+        
+        Q = np.complex128(prevapparimp + (intrinimp*np.tanh(tanhval)))/(intrinimp + (prevapparimp*np.tanh(tanhval)))
 
-        Z =np.complex128(intrinimp * (prevapparimp + (intrinimp*np.tanh(tanhval)))/(intrinimp + (prevapparimp*np.tanh(tanhval))))
-        return Z    
+        Z =np.complex128(intrinimp * Q)
+        return Z, Q    
     
     def appar_resis(self, apparimp, angfreq):
         """
@@ -182,12 +184,12 @@ class LayeredSystem(object):
             k = self.wavenumber(angfreqs, self._structure[n][2], self._structure[n][3])
             intrin = self.intrin_imp(angfreqs, self._structure[n][2], self._structure[n][3])
             if n == 0:
-                apparimp = self.appar_imp(k, intrin, intrin, self._structure[n][1])
+                apparimp, Q = self.appar_imp(k, intrin, intrin, self._structure[n][1])
                 prevapparimp = apparimp
             else:
-                apparimp = self.appar_imp(k, intrin, prevapparimp, self._structure[n][1])
+                apparimp, Q = self.appar_imp(k, intrin, prevapparimp, self._structure[n][1])
                 prevapparimp = apparimp
 
         conds = self.appar_cond(apparimp, angfreqs)
 
-        return conds
+        return conds, Q

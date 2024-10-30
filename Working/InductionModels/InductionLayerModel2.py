@@ -160,12 +160,12 @@ plt.yscale('log')
 plt.xlabel('Frequency [Hz]')
 plt.ylabel('Apparent Conductivity [S/m]')
 plt.title('Ocean Thickness [km]')
-plt.xlim(10**(-6), 10)
-plt.ylim(10**(-4), 10)
+plt.xlim(10**(-6), 100)
+plt.ylim(10**(-5), 10)
 #plt.axvspan(10**(-2.5), 100, color='lightgrey')
 plt.legend()
 
 plt.show()
 
 
-np.save(r".\Enceladus Models\HOLDER.npy", data)
+#np.save(r".\Enceladus Models\HOLDER.npy", data)
