@@ -33,7 +33,7 @@ ax2 = ax1.twinx()
 line2 = ax2.plot(freqs, q1, label='Q-function', color='blue')
 ax2.set_ylabel('Q-function value')
 ax2.set_yscale('log')
-lines = line1 #+ line2
+lines = line1 + line2
 labels = [ line.get_label() for line in lines]
 ax1.legend(lines, labels, loc='upper left')
 plt.show()
