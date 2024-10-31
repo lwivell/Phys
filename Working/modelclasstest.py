@@ -22,7 +22,7 @@ for n in range(len(q1)):
     prev1[n] = np.linalg.norm(prev1[n])
     int1[n] = np.linalg.norm(int1[n])
 
-
+ 
 fig, ax1 = plt.subplots()
 line1 = ax1.plot(freqs, conds1, label = 'Apparent Conductivity', color='orange')
 ax1.set_xlabel('Frequency [Hz]')
