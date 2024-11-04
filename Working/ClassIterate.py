@@ -97,11 +97,11 @@ for n in CorePerm:
 
 model._structure[2][3] = 3.5 * miti
 
-plt.plot(freqs, OCresponse[0], label=OceanCond[0])
-plt.plot(freqs, OCresponse[1], label=OceanCond[1])
-plt.plot(freqs, OCresponse[2], label=OceanCond[2])
-plt.plot(freqs, OCresponse[3], label=OceanCond[3])
-plt.plot(freqs, OCresponse[4], label=OceanCond[4])
+plt.plot(freqs, IPresponse[0], label=IcePerm[0])
+plt.plot(freqs, IPresponse[1], label=IcePerm[1])
+plt.plot(freqs, IPresponse[2], label=IcePerm[2])
+plt.plot(freqs, IPresponse[3], label=IcePerm[3])
+plt.plot(freqs, IPresponse[4], label=IcePerm[4])
 plt.yscale('log')
 plt.xscale('log')
 plt.xlim(10**(-3), 1000)
@@ -109,5 +109,5 @@ plt.ylim(10**(-5), 10)
 plt.xlabel('Frequency [Hz]')
 plt.ylabel('Apparent Conductivity [S/m]')
 plt.legend()
-plt.title('Ocean Conductivity [S/m]')
+plt.title('Ice Shell Relative Permittivity')
 plt.show()
