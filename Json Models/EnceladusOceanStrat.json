@@ -8,7 +8,7 @@
     },{
         "index": 1,
         "thickness": 17.5,
-        "conductivity": 5,
+        "conductivity": 1,
         "permittivity": 85
     },{
         "index": 2,
