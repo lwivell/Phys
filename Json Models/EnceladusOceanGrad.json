@@ -1,0 +1,55 @@
+{
+    "maxlayers": 10,
+    "layers": [{
+        "index": 0,
+        "thickness": 190,
+        "conductivity": 0.001,
+        "permittivity": 5
+    },{
+        "index": 1,
+        "thickness": 4.3,
+        "conductivity": 5,
+        "permittivity": 85
+    },{
+        "index": 2,
+        "thickness": 4.375,
+        "conductivity": 4.3,
+        "permittivity": 70
+    },{
+        "index": 3,
+        "thickness": 4.375,
+        "conductivity": 3.6,
+        "permittivity": 70
+    },{
+        "index": 4,
+        "thickness": 4.375,
+        "conductivity": 2.9,
+        "permittivity": 70
+    },{
+        "index": 5,
+        "thickness": 4.375,
+        "conductivity": 2.2,
+        "permittivity": 70
+    },{
+        "index": 6,
+        "thickness": 4.375,
+        "conductivity": 1.5,
+        "permittivity": 70
+    },{
+        "index": 7,
+        "thickness": 4.375,
+        "conductivity": 0.75,
+        "permittivity": 70
+    },{
+        "index": 8,
+        "thickness": 4.375,
+        "conductivity": 0.01,
+        "permittivity": 70
+    },{
+        "index": 9,
+        "thickness": 26,
+        "conductivity": 0.0001,
+        "permittivity": 3.5
+    }],
+    "name": "Enceladus Model with Conductivity Gradient in Ocean"
+}
