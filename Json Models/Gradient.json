@@ -1,0 +1,100 @@
+{
+    "maxlayers": 19,
+    "layers": [{
+        "index": 0,
+        "thickness": 125,
+        "conductivity": 1,
+        "permittivity": 85
+    },{
+        "index": 1,
+        "thickness": 125,
+        "conductivity": 0.5,
+        "permittivity": 85
+    },{
+        "index": 2,
+        "thickness": 125,
+        "conductivity": 0.1,
+        "permittivity": 85
+    },{
+        "index": 3,
+        "thickness": 125,
+        "conductivity": 0.05,
+        "permittivity": 85
+    },{
+        "index": 4,
+        "thickness": 62.5,
+        "conductivity": 0.01,
+        "permittivity": 85
+    },{
+        "index": 5,
+        "thickness": 62.5,
+        "conductivity": 0.0075,
+        "permittivity": 85
+    },{
+        "index": 6,
+        "thickness": 62.5,
+        "conductivity": 0.005,
+        "permittivity": 85
+    },{
+        "index": 7,
+        "thickness": 62.5,
+        "conductivity": 0.0025,
+        "permittivity": 85
+    },{
+        "index": 8,
+        "thickness": 62.5,
+        "conductivity": 0.001,
+        "permittivity": 85
+    },{
+        "index": 9,
+        "thickness": 62.5,
+        "conductivity": 0.00075,
+        "permittivity": 85
+    },{
+        "index": 10,
+        "thickness": 15.56125,
+        "conductivity": 0.0005,
+        "permittivity": 85
+    },{
+        "index": 11,
+        "thickness": 15.56125,
+        "conductivity": 0.0004375,
+        "permittivity": 85
+    },{
+        "index": 12,
+        "thickness": 15.56125,
+        "conductivity": 0.000375,
+        "permittivity": 85
+    },{
+        "index": 13,
+        "thickness": 15.56125,
+        "conductivity": 0.0003125,
+        "permittivity": 85
+    },{
+        "index": 14,
+        "thickness": 15.56125,
+        "conductivity": 0.00025,
+        "permittivity": 85
+    },{
+        "index": 15,
+        "thickness": 15.56125,
+        "conductivity": 0.0001875,
+        "permittivity": 85
+    },{
+        "index": 16,
+        "thickness": 15.56125,
+        "conductivity": 0.000125,
+        "permittivity": 85
+    },{
+        "index": 17,
+        "thickness": 15.56125,
+        "conductivity": 0.0001125,
+        "permittivity": 85
+    },{
+        "index": 18,
+        "thickness": 10,
+        "conductivity": 0.0001,
+        "permittivity": 85
+    }],
+    "name": "Gradient tester"
+}
