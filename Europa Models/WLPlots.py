@@ -1,12 +1,12 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-oceanthickness = np.load(r".\Europa Induction Data\oceanthickness.npy")
-layerthickness = np.load(r".\Europa Induction Data\layerthickness.npy")
-layerdepth = np.load(r".\Europa Induction Data\layerdepth.npy")
-layerconductivity = np.load(r".\Europa Induction Data\layerconductivity.npy")
-oceanconductivity = np.load(r".\Europa Induction Data\oceanconductivity.npy")
-shellthickness = np.load(r".\Europa Induction Data\Iceshellthickness.npy")
+oceanthickness = np.load(r".\Europa Models\oceanthickness.npy")
+layerthickness = np.load(r".\Europa Models\layerthickness.npy")
+layerdepth = np.load(r".\Europa Models\layerdepth.npy")
+layerconductivity = np.load(r".\Europa Models\layerconductivity.npy")
+oceanconductivity = np.load(r".\Europa Models\oceanconductivity.npy")
+shellthickness = np.load(r".\Europa Models\Iceshellthickness.npy")
 
 plt.subplot(2,3,1)
 plt.plot(oceanthickness[0], oceanthickness[1], label='40')

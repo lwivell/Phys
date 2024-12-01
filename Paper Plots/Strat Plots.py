@@ -20,7 +20,7 @@ graddiff = gradcon - basecon
 
 plt.plot(freqs, stratdiff, label='Stratified Ocean')
 plt.plot(freqs, graddiff, label='Ocean Conductivity Gradient')
-plt.axhline(y=0, color='gray', linestyle='--', label = 'No Difference')
+plt.axhline(y=0, color='gray', linestyle='--', label = 'Constant Ocean Conductivity')
 plt.xlim(10**(-3), 1)
 plt.ylim(-0.02, 0.002)
 plt.xscale('log')

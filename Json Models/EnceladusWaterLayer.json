@@ -12,7 +12,7 @@
         "permittivity": 85
     },{
         "index": 2,
-        "thickness": 15,
+        "thickness": 12.5,
         "conductivity": 0.0001,
         "permittivity": 3.5
     },{
@@ -22,7 +22,7 @@
         "permittivity": 85
     },{
         "index": 4,
-        "thickness": 10,
+        "thickness": 12.5,
         "conductivity": 0.0001,
         "permittivity": 3.5
     }],
