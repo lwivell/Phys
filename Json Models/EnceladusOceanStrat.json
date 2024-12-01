@@ -7,13 +7,13 @@
         "permittivity": 5
     },{
         "index": 1,
-        "thickness": 17.5,
-        "conductivity": 1,
+        "thickness": 30,
+        "conductivity": 1.15,
         "permittivity": 85
     },{
         "index": 2,
-        "thickness": 17.5,
-        "conductivity": 0.01,
+        "thickness": 5,
+        "conductivity": 0.1,
         "permittivity": 70
     },{
         "index": 3,
