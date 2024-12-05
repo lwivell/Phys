@@ -25,7 +25,7 @@ plt.subplot(3,1,1)
 plt.grid()
 plt.plot(freqs, stratcon, label='Stratified Ocean')
 plt.plot(freqs, gradcon, label='Ocean Conductivity Gradient')
-plt.plot(freqs, basecon, label='Constant Ocean Conductivity')
+plt.plot(freqs, basecon, label='Constant Ocean Conductivity', color='gray', linestyle='--')
 plt.xlim(10**(-3), 100)
 plt.xscale('log')
 plt.yscale('log')
@@ -50,7 +50,6 @@ plt.text(0.02, 0.85, 'b)', transform=plt.gca().transAxes,
          fontsize=14, fontweight='bold', va='top', ha='left')
 plt.xticks(fontsize=0)
 plt.yticks(fontsize=10)
-plt.legend()
 
 
 plt.subplot(3,1,3)
@@ -68,5 +67,5 @@ plt.axhline(y=0, color='gray', linestyle='--', label = 'Constant Ocean Conductiv
 plt.text(0.02, 0.95, 'c)', transform=plt.gca().transAxes,
          fontsize=14, fontweight='bold', va='top', ha='left')
 #plt.title('Situational Comparison')
-plt.legend()
+
 plt.show()
