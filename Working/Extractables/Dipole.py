@@ -1,10 +1,10 @@
 from typing import Tuple
 import numpy as np
-from Conversions import spherical_to_cartesian_pos
-from Conversions import spherical_unit_vectors
+from .Conversions import spherical_to_cartesian_pos
+from .Conversions import spherical_unit_vectors
 
 
-def calc_OTD_components(pos_t, pos_r, pos_theta, pos_phi, dipmag, diptheta, dipphi, x_shift=0.0, y_shift=0.0, z_shift=0.0) -> Tuple[np.ndarray,np.ndarray,np.ndarray,np.ndarray]:
+def calc_OTD_components(pos_t, pos_r, pos_theta, pos_phi, dipmag, diptheta=0.0, dipphi=0.0, x_shift=0.0, y_shift=0.0, z_shift=0.0) -> Tuple[np.ndarray,np.ndarray,np.ndarray,np.ndarray]:
     """
     Calculates the magnetic field according to any input OTD conditions
 

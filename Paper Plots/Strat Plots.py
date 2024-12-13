@@ -18,8 +18,8 @@ gradcon, e,f,g,h, = grad.iterate(angfreqs)
 stratdiff = stratcon - basecon
 graddiff = gradcon - basecon
 
-stratper =100 - (stratcon/basecon)*100
-gradper =100 - (gradcon/basecon)*100
+stratper = 100 - (stratcon/basecon)*100
+gradper = 100 - (gradcon/basecon)*100
 
 plt.subplot(3,1,1)
 plt.grid()

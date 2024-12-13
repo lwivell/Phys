@@ -52,6 +52,7 @@ def cartesian_to_spherical(posx, posy, posz):
     posr = np.sqrt((posx**2)+(posy**2)+(posz**2))
     postheta = np.arccos(posz/(np.sqrt((posx**2)+(posy**2)+(posz**2))))
     posphi = np.sign(posy)*np.arccos(posx/(np.sqrt((posx**2)+(posy**2)))) 
+    return posr, postheta, posphi
 
 def spherical_to_cartesian_pos(pos_r, pos_theta, pos_phi):
     """
