@@ -25,7 +25,7 @@ mesh = mesh.with_boundaries({'bound_xmin': lambda x: np.isclose(x[0], x_pts[0]),
 element = skfem.ElementTriP2()
 fem = Helmholtz(mesh, element)
 
-angfreq = 5000
+angfreq = 4000
 
 eps_ice = 3.5*miti
 mu_ice = 1*meab
