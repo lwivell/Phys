@@ -21,7 +21,7 @@ mesh = mesh.with_boundaries({'bound_xmin': lambda x: np.isclose(x[0], x_pts[0]),
 element = skfem.ElementTriP2()
 fem = Helmholtz(mesh, element)
 
-k0 = 0.3
+k0 = 0.5
 eps_air = 1
 mu_air = 1
 eps_plastic = 2 - 0.1j
@@ -49,7 +49,7 @@ import matplotlib.pyplot as mplt
 
 mag = np.sqrt((fem.phi_re**2) +(fem.phi_im**2))
 
-fig, ax = mplt.subplots(1, 1)
+#fig, ax = mplt.subplots(1, 1)
 #plot(fem.basis, fem.phi_re, ax=ax[0], colorbar=True)
 #plot(fem.basis, fem.phi_im, ax=ax[1], colorbar=True)
 plot(fem.basis, mag, colorbar=True)
