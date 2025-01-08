@@ -119,4 +119,6 @@ plt.text(0.02, 0.95, 'd)', transform=plt.gca().transAxes,
          fontsize=14, fontweight='bold', va='top', ha='left')
 plt.title('Water Layer Conductivity')
 plt.legend()
+
+plt.tight_layout()
 plt.show()
